@@ -1,0 +1,32 @@
+.loginWindow {
+  background-color: #c6b38e;
+  width: 80%;
+  height: 90%;
+  top: 5%;
+  left: 10%;
+  position: absolute;
+  border-radius: 10px;
+}
+.loginFlex {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+}
+.maroonlogopic {
+  width: 20%;
+  height: 20%;
+}
+.loginBox {
+  background-color: #242325;
+  width: 70%;
+  height: 30%;
+  border-radius: 7px;
+}
+
+.loginButtons{
+  padding: 5px;
+  background-color: #A52422;
+}

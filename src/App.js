@@ -5,7 +5,8 @@ import router from "./router"
 
 class App extends Component {
   render() {
-    return <div>{router}</div>
+    return <div className="backgroundColor">
+    {router}</div>
   }
 }
 

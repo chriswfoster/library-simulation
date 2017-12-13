@@ -23,6 +23,26 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
+
+.backgroundColor {
+  z-index: -33;
+  height: 100vh;
+  width: 100vw;
+  background-color: #4e1e29;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Alegreya:700i");
+
+.alegreyaFontMaroon {
+  color: #4e1e29;
+  font-variant: small-caps;
+  font-family: "Alegreya", serif;
+}
+

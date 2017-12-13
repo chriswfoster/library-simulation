@@ -2,10 +2,15 @@ import axios from "axios"
 
 //Action Constants here
 const REQ_WHATEVER = "REQ_ WHATEVER"
+const TYPE_USERNAME = "TYPE_USERNAME"
+const TYPE_PASSWORD = "TYPE_PASSWORD"
 
 //Intial State
 const initialState = {
-    user: {}
+    user: {},
+    typedUsername: {},
+    typedPassword: {},
+
 }
 
 
@@ -19,8 +24,10 @@ export default function reducer(state = initialState, action){
           isLoading: false,
           user: action.payload
         })
-  
-
+        case TYPE_USERNAME:
+        return Object.assign({}, state, {typedUsername: action.payload})
+        case TYPE_PASSWORD:
+        return Object.assign({}, state, {typedPassword: action.payload})
         default:
         return state
     }
@@ -28,3 +35,17 @@ export default function reducer(state = initialState, action){
 
 
 //Action Creators
+
+export function typePassword(pw){
+    return {
+        type: TYPE_PASSWORD,
+        payload: pw
+    }
+}
+
+export function typeUsername(un){
+    return {
+        type: TYPE_USERNAME,
+        payload: un
+    }
+}
