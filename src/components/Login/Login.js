@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
-
+import {typePassword, typeUsername, loginUser, registerUser} from '../../ducks/reducer'
 import './login.css'
 import Maroonlogo from "../assets/maroon-logo.svg"
 
@@ -14,6 +14,7 @@ class Login extends Component {
 
 
 render(){
+    const {password, username} = this.props
     return(
         <div> 
             
@@ -33,8 +34,8 @@ render(){
 </div>
 
 <div>
-<div onClick={() => register()}>Register</div>
-<div onClick={() => login()}>Login</div>
+<div onClick={() => registerUser(username, password)}>Register</div>
+<div onClick={() => loginUser(username, password)}>Login</div>
 
 
     </div>
@@ -58,4 +59,4 @@ render(){
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, {})(Login)
+export default connect(mapStateToProps, {typePassword, typeUsername, loginUser, registerUser})(Login)

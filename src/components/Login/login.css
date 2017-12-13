@@ -29,4 +29,5 @@
 .loginButtons{
   padding: 5px;
   background-color: #A52422;
+  cursor: pointer;
 }

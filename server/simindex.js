@@ -33,21 +33,41 @@ app.use(
     })
   )
 
+  app.use(passport.initialize())
+  app.use(passport.session())
+
+
+// SOMETHING MIGHT GO HERE..... MAYBE LOGIN FUNCTION OF SOME SORT
 
 
 
 
+  passport.serializeUser(function(user, done) {
+    done(null, user)
+  })
+  passport.deserializeUser(function(obj, done) {
+    done(null, obj)
+  })
 
+  
+  app.get(
+    "/api/auth/login",
+    passport.authenticate("auth0", {
+      successRedirect: "/yourpage" //this is the page they'll land on. Could make it their user page.
+    })
+  )
+
+
+  app.get("/logout", function(req, res) {
+    req.logout()
+    res.redirect("/")
+  })
 
 
   const path = require("path")
   app.get("*", (req, res, next) => {
     res.sendFile(path.join(__dirname, "/../build/index.html"))
   })
-  
-  
-  
-  
   
   app.listen(port, () => {
     console.log(`Listening on dat port: ${port}`)
