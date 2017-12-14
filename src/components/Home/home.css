@@ -1,0 +1,9 @@
+.homeWindow {
+    background-color: #c6b38e;
+    width: 80%;
+    height: 90%;
+    top: 5%;
+    left: 10%;
+    position: absolute;
+    border-radius: 10px;
+}

@@ -10,10 +10,10 @@ import store from './store'
 
 
 export default(
-<Provider store={store}>
+
 <Switch>
 <Route exact path="/" component={Login}/>
 <Route path="/Home" component={Home}/>
     </Switch>
-</Provider>
+
 )

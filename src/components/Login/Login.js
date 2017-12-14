@@ -8,16 +8,15 @@ import {
 } from "../../ducks/reducer"
 import "./login.css"
 import Maroonlogo from "../assets/maroon-logo.svg"
+import {Link} from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
     super(props)
-    this.logit = this.logit.bind(this)
+   
   }
 
-  logit() {
-    console.log(this.props.user)
-  }
+ 
 
   render(props) {
     const {
@@ -25,6 +24,8 @@ class Login extends Component {
       typedUsername,
       typeUsername,
       typePassword,
+      loginUser,
+      registerUser,
       user
     } = this.props
     console.log(typedPassword, typedUsername, user)
@@ -52,10 +53,10 @@ class Login extends Component {
               <div onClick={() => registerUser(typedUsername, typedPassword)}>
                 Register
               </div>
-              <div onClick={() => loginUser({typedUsername, typedPassword})}>
+              <Link onClick={() => loginUser({typedUsername, typedPassword})} to="/Home">
                 Login
-              </div>
-              <div onClick={() => this.logit()}> Log Me</div>
+              </Link>
+             
             </div>
           </div>
         </div>

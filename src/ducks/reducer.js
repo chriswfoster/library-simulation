@@ -1,6 +1,7 @@
 import axios from "axios"
 
 //Action Constants here
+const REQ_USER = "REQ_USER"
 const LOGIN_USER = "LOGIN_USER"
 const REGISTER_USER = "REGISTER_USER"
 const TYPE_USERNAME = "TYPE_USERNAME"
@@ -16,6 +17,15 @@ const initialState = {
 //Reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+
+    case REQ_USER + "_PENDING": //pending tag is applied by redux promise middleware
+    return Object.assign({}, state, { isLoading: true })
+  case REQ_USER + "_FULFILLED":
+    return Object.assign({}, state, {
+      isLoading: false,
+      user: action.payload
+    })
+    
     case LOGIN_USER + '_PENDING':
       console.log(action.payload)
       return Object.assign({}, state, { isLoading: true })
@@ -41,6 +51,15 @@ export default function reducer(state = initialState, action) {
 }
 
 //Action Creators
+
+export function getUserInfo() {
+  return {
+    type: REQ_USER,
+    payload: axios.get("/api/me").then(response => {
+      return response.data
+    })
+  }
+}
 
 export function loginUser(obj) {
   console.log("worked")
