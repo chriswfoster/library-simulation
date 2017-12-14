@@ -1,4 +1,7 @@
 import axios from "axios"
+import React from "react"
+import { Redirect } from "react-router"
+
 
 //Action Constants here
 const REQ_USER = "REQ_USER"
@@ -17,19 +20,17 @@ const initialState = {
 //Reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-
     case REQ_USER + "_PENDING": //pending tag is applied by redux promise middleware
-    return Object.assign({}, state, { isLoading: true })
-  case REQ_USER + "_FULFILLED":
-    return Object.assign({}, state, {
-      isLoading: false,
-      user: action.payload
-    })
-    
-    case LOGIN_USER + '_PENDING':
-      console.log(action.payload)
       return Object.assign({}, state, { isLoading: true })
-    case LOGIN_USER + '_FULFILLED': 
+    case REQ_USER + "_FULFILLED":
+      return Object.assign({}, state, {
+        isLoading: false,
+        user: action.payload
+      })
+
+    case LOGIN_USER + "_PENDING":
+      return Object.assign({}, state, { isLoading: true })
+    case LOGIN_USER + "_FULFILLED":
       return Object.assign({}, state, {
         isLoading: false,
         user: action.payload
@@ -53,10 +54,11 @@ export default function reducer(state = initialState, action) {
 //Action Creators
 
 export function getUserInfo() {
+  console.log("hi")
   return {
     type: REQ_USER,
     payload: axios.get("/api/me").then(response => {
-      return response.data
+      console.log(response.data)
     })
   }
 }
@@ -65,10 +67,12 @@ export function loginUser(obj) {
   console.log("worked")
   return {
     type: LOGIN_USER,
-    payload: axios.post("/api/auth/login", {
-      username: obj.typedUsername,
-      password: obj.typedPassword
-    }).then(response => response.data)
+    payload: axios
+      .post("/api/auth/login", {
+        username: obj.typedUsername,
+        password: obj.typedPassword
+      })
+      .then(response => console.log("loginUserLogging:", response.data))
   }
 }
 export function registerUser(un, pw) {

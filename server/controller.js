@@ -16,7 +16,7 @@ module.exports = {
 
     dbInstance
       .registerUser(username, password)
-      .then((response) => {
+      .then(response => {
         res.status(200).send(response)
       })
       .catch(() => res.status(500).send())
@@ -36,9 +36,8 @@ module.exports = {
     dbInstance
       .loginUser(username, password)
       .then(response => {
-          req.session.user = response
-        
-        
+        req.session.user = response
+        res.status(200).send(response)
       })
       .catch(() => res.status(500).send())
   }

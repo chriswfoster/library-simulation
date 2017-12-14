@@ -7,7 +7,6 @@ const massive = require("massive")
 const { secret } = require("./config.js").session
 
 const connectionString = require("./config").massive
-const controller = require("./controller.js")
 
 const app = express()
 
@@ -30,10 +29,12 @@ app.use(
     saveUninitialized: false
   })
 )
-
+const controller = require("./controller.js")
 // SOMETHING MIGHT GO HERE..... MAYBE LOGIN FUNCTION OF SOME SORT
 
-app.post("/api/auth/login", controller.loginuser)
+app.post("/api/auth/login", controller.loginuser, (req, res, next) => {
+  res.redirect("http://localhost:3000/Home")
+})
 app.post("/api/auth/register", controller.registeruser)
 
 app.get("/logout", function(req, res) {
@@ -44,8 +45,9 @@ app.get("/logout", function(req, res) {
 app.get("/api/getallposts", controller.getall)
 
 app.get("/api/me", function(req, res) {
-  if (!req.user) return res.status(401)
-  res.status(200).json(req.user)
+  console.log(req.session)
+  if (!req.session.user) return res.status(401)
+  res.status(200).json(req.session.user)
 })
 
 // const path = require("path")

@@ -9,6 +9,8 @@ import {
 import "./login.css"
 import Maroonlogo from "../assets/maroon-logo.svg"
 import {Link} from 'react-router-dom'
+import {Redirect} from 'react-router'
+
 
 class Login extends Component {
   constructor(props) {
@@ -53,9 +55,9 @@ class Login extends Component {
               <div onClick={() => registerUser(typedUsername, typedPassword)}>
                 Register
               </div>
-              <Link onClick={() => loginUser({typedUsername, typedPassword})} to="/Home">
+              <div onClick={() => loginUser({typedUsername, typedPassword})}>
                 Login
-              </Link>
+              </div>
              
             </div>
           </div>

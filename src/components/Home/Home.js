@@ -1,26 +1,30 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import "./home.css"
-import {
-    getUserInfo
-  } from "../../ducks/reducer"
+import { getUserInfo } from "../../ducks/reducer"
 
 class Home extends Component {
   constructor(props) {
     super(props)
+this.watisit=this.watisit.bind(this)
   }
 
-componentWillMount(){
-this.props.getUserInfo()
-}
+  componentDidMount() {
+      
+    this.props.getUserInfo()
+  }
 
-
-
+  watisit(){
+    console.log(this.props)
+  }
 
   render() {
     return (
       <div>
-        <div className="homeWindow" />
+        <div className="homeWindow"> 
+        <button onClick={() => this.watisit()} />
+        </div>
+
       </div>
     )
   }
