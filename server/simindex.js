@@ -34,6 +34,7 @@ app.use(
 // SOMETHING MIGHT GO HERE..... MAYBE LOGIN FUNCTION OF SOME SORT
 
 app.post("/api/auth/login", controller.loginuser)
+app.post("/api/auth/register", controller.registeruser)
 
 app.get("/logout", function(req, res) {
   req.logout()

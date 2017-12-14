@@ -17,8 +17,8 @@ module.exports = {
     dbInstance
       .registerUser(username, password)
       .then(() => {
-          session.user = response
-          res.status(200).send()})
+        res.status(200).send()
+      })
       .catch(() => res.status(500).send())
   },
   getall: (req, res, next) => {
@@ -36,8 +36,9 @@ module.exports = {
     dbInstance
       .loginUser(username, password)
       .then(response => {
-          session.user = response
-          res.status(200).send(response)})
+        res.status(200).send(response[0])
+        session.user = Object.assign({}, response[0])
+      })
       .catch(() => res.status(500).send())
   }
 }

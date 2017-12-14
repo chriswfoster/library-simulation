@@ -16,9 +16,17 @@ const initialState = {
 //Reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_USER + "_PENDING":
+    case LOGIN_USER + '_PENDING':
+      console.log(action.payload)
       return Object.assign({}, state, { isLoading: true })
-    case LOGIN_USER + "_FULFILLED":
+    case LOGIN_USER + '_FULFILLED': 
+      return Object.assign({}, state, {
+        isLoading: false,
+        user: action.payload
+      })
+    case REGISTER_USER + "_PENDING":
+      return Object.assign({}, state, { isLoading: true })
+    case REGISTER_USER + "_FULFILLED":
       return Object.assign({}, state, {
         isLoading: false,
         user: action.payload
@@ -34,12 +42,14 @@ export default function reducer(state = initialState, action) {
 
 //Action Creators
 
-export function loginUser(un, pw) {
+export function loginUser(obj) {
+  console.log("worked")
   return {
     type: LOGIN_USER,
-    payload: axios.get("/api/auth/login").then(response => {
-      return response.data && console.log(response.data)
-    })
+    payload: axios.post("/api/auth/login", {
+      username: obj.typedUsername,
+      password: obj.typedPassword
+    }).then(response => response.data)
   }
 }
 export function registerUser(un, pw) {
@@ -47,8 +57,8 @@ export function registerUser(un, pw) {
     type: REGISTER_USER,
     payload: axios
       .post("/api/auth/register", {
-        password: pw,
-        username: un
+        username: un,
+        password: pw
       })
       .then(response => {
         return response.data && console.log(response.data)
